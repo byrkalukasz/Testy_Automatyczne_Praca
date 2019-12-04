@@ -1,7 +1,7 @@
 ﻿using SeleniumExtras.PageObjects;
 using OpenQA.Selenium;
 
-namespace Eskok_autoTest.Page
+namespace Eskok_autoTest
 {
     public class TransferMenu
     {

@@ -18,13 +18,16 @@ namespace Eskok_autoTest
         TransferLimit TransferLimit;
         ChangeDayLimit ChangeDayLimit;
         Action Action;
+        ChangeLimitOverwiew ChangeLimitOverwiew;
+        ChangeLimitSMSCode ChangeLimitSMSCode;
 
         string UserLogin = "0652566663", UserTransfer = "0652566663", ValidUserPassword = "11111111";
         string IBAN = "59809900042661806263260129";
         int status = 0; // Zero aby leciał kazdy test, pozostała liczba aby leciał jeden w koło 
                         //1 - powtarzanie logowania
                         //2 - powtarzanie przelewu
-                        //3 - powtarzanie zmieny limitów
+                        //3 - powtarzanie zmieny limitu dziennego
+                        //4 - powtarzanie zmiany limitu miesięcznego
 
         public CFD()
         {
@@ -73,6 +76,7 @@ namespace Eskok_autoTest
                 oneTimeTransfer.Szczegoly.SendKeys("Testowe szczegoly");
                 oneTimeTransfer.NextButton.Click();
                 OneTimeTransferOverview.NextButton.Click();
+                Thread.Sleep(2000);
                 string SMS = autentyfication.GetSmsPassword().ToString();
                 OneTimeTransferAkcept.PasswordImput.SendKeys(SMS);
                 OneTimeTransferAkcept.AkceptButton.Click();
@@ -80,7 +84,6 @@ namespace Eskok_autoTest
             } while (status == 2);
 
         }
-
         [Test]
         public void ChangeLimits()
         {
@@ -88,6 +91,7 @@ namespace Eskok_autoTest
             SetDriver();
             do
             {
+                //Day Limit
                 Driver.ChromeDriver.Navigate().GoToUrl(config.EskokAdress);
                 homepage.LoginField.SendKeys(UserLogin);
                 homepage.NextButton.Click();
@@ -102,10 +106,22 @@ namespace Eskok_autoTest
                 NewLimit = Action.GetRandomFromRange(DayLimit, MonthLimit);
                 ChangeDayLimit.NewLimitTextField.Clear();
                 ChangeDayLimit.NewLimitTextField.SendKeys(NewLimit);
+                ChangeDayLimit.NextButton.Click();
+                ChangeLimitOverwiew.AkceptButton.Click();
+                Thread.Sleep(2000);
+                ChangeLimitSMSCode.SMSPasswordField.SendKeys(autentyfication.GetSmsPassword());
+                ChangeLimitSMSCode.AkceptButtn.Click();
 
             } while (status == 3);
         }
+        [Test]
+        public void ChangeData()
+        {
 
+        }
+        [Test]
+        public void puste()
+        { }
         [TearDown]
         public void QuitTest()
         {
@@ -128,6 +144,8 @@ namespace Eskok_autoTest
             TransferLimit = new TransferLimit();
             ChangeDayLimit = new ChangeDayLimit();
             Action = new Action();
+            ChangeLimitOverwiew = new ChangeLimitOverwiew();
+            ChangeLimitSMSCode = new ChangeLimitSMSCode();
         }
     }
 }

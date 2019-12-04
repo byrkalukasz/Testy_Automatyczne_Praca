@@ -15,6 +15,8 @@ namespace Eskok_autoTest
         public IWebElement MonthLimit { get; set; }
         [FindsBy(How = How.XPath, Using = "/html/body/section[1]/section[2]/div[2]/div/section/form/div[2]/div[2]/div/div/table/tbody/tr[2]/td[2]")]
         public IWebElement DayLimit { get; set; }
+        [FindsBy(How = How.XPath, Using = "/html/body/section[1]/section[2]/div[2]/div/section/form/div[3]/ul/li[2]/button/span/span")]
+        public IWebElement NextButton { get; set; }
 
     }
 }
