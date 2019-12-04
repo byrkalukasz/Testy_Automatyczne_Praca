@@ -21,6 +21,9 @@ namespace Eskok_autoTest
         ChangeLimitOverwiew ChangeLimitOverwiew;
         ChangeLimitSMSCode ChangeLimitSMSCode;
         ChangeMonthlyLimit ChangeMonthlyLimit;
+        ChangeMontlyLimitAccept ChangeMontlyLimitAccept;
+        ChangeMontlyLimitOwerview ChangeMontlyLimitOwerview;
+
 
         string UserLogin = "0652566663", UserTransfer = "0652566663", ValidUserPassword = "11111111";
         string IBAN = "59809900042661806263260129";
@@ -133,17 +136,17 @@ namespace Eskok_autoTest
                 Thread.Sleep(1000);
                 header.Settings.Click();
                 TransferLimit.ChangeMonthLimit.Click();
-                DayLimit = ChangeDayLimit.DayLimit.Text;
-                MonthLimit = ChangeDayLimit.MonthLimit.Text;
-                NewLimit = Action.GetRandomFromRange(DayLimit, MonthLimit);
-                ChangeDayLimit.NewLimitTextField.Clear();
-                ChangeDayLimit.NewLimitTextField.SendKeys(NewLimit);
-                ChangeDayLimit.NextButton.Click();
-                ChangeLimitOverwiew.AkceptButton.Click();
+                MonthLimit = ChangeMonthlyLimit.MontlyLimit.Text;
+                NewLimit = Action.GetRandomFromRange(MonthLimit,"5 000 000" );
+                ChangeMonthlyLimit.NewMonthLimit.Clear();
+                ChangeMonthlyLimit.NewMonthLimit.SendKeys(NewLimit);
+                ChangeMonthlyLimit.NextButton.Click();
+                ChangeMontlyLimitOwerview.AcceptButton.Click();
                 Thread.Sleep(2000);
-                ChangeLimitSMSCode.SMSPasswordField.SendKeys(autentyfication.GetSmsPassword());
-                ChangeLimitSMSCode.AkceptButtn.Click();
-
+                ChangeMontlyLimitAccept.SMSPasswordField.SendKeys(autentyfication.GetSmsPassword());
+                ChangeMontlyLimitAccept.AcceptButton.Click();
+                //Pozytywna zmiana limitu
+                ///html/body/section[1]/section[2]/div[2]/div/section/div/span
             } while (status == 3);
 
         }
@@ -184,6 +187,8 @@ namespace Eskok_autoTest
             ChangeLimitOverwiew = new ChangeLimitOverwiew();
             ChangeLimitSMSCode = new ChangeLimitSMSCode();
             ChangeMonthlyLimit = new ChangeMonthlyLimit();
+            ChangeMontlyLimitAccept = new ChangeMontlyLimitAccept();
+            ChangeMontlyLimitOwerview = new ChangeMontlyLimitOwerview();
         }
     }
 }

@@ -3,9 +3,9 @@ using OpenQA.Selenium;
 
 namespace Eskok_autoTest
 {
-    class NewMontlyLimitOwerview
+    class ChangeMontlyLimitOwerview
     {
-        public NewMontlyLimitOwerview()
+        public ChangeMontlyLimitOwerview()
         {
             PageFactory.InitElements(Driver.ChromeDriver, this);
         }
