@@ -67,6 +67,9 @@
     <Compile Include="Page\Customer\ChangeDayLimit.cs" />
     <Compile Include="Const\Config.cs" />
     <Compile Include="Page\Customer\ChangeLimitSMSCode.cs" />
+    <Compile Include="Page\Customer\ChangeMonthlyLimit.cs" />
+    <Compile Include="Page\Customer\NewMontlyLimitAccept.cs" />
+    <Compile Include="Page\Customer\NewMontlyLimitOwerview.cs" />
     <Compile Include="Page\Customer\TransferMenu.cs" />
     <Compile Include="Reppo\DataBaseAction.cs" />
     <Compile Include="Const\Driver.cs" />
